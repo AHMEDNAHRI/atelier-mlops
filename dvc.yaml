@@ -1,0 +1,20 @@
+stages:
+  train:
+    cmd: python src/train.py
+    deps:
+      - src/train.py
+      - data/raw/iris.csv
+    params:
+      - train.n_estimators
+      - train.max_depth
+      - train.random_state
+      - train.test_size
+      - train.n_neighbors
+    outs:
+      - models/model.pkl
+      - models/knn_model.pkl
+    metrics:
+      - reports/metrics.json:
+          cache: false
+      - reports/metrics_knn.json:
+          cache: false
